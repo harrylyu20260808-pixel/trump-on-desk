@@ -1,0 +1,39 @@
+{
+  "name": "trump-on-desk",
+  "version": "1.0.0",
+  "description": "A cartoon desk buddy that reacts to your AI coding tools (Claude Code / Cursor / Codex).",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node test/run-tests.js",
+    "pack:win": "electron-builder --win nsis x64"
+  },
+  "author": "trump-on-desk contributors",
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.trumpondesk.desktop",
+    "productName": "Trump on Desk",
+    "files": [
+      "src/**/*",
+      "hooks/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "directories": { "output": "release" },
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Trump on Desk"
+    }
+  }
+}
