@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'" />
+  <title>Trump on Desk</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="logo">T</span>
+      <div>
+        <div class="title" id="title">Trump on Desk</div>
+        <div class="sub" id="subtitle"></div>
+      </div>
+    </div>
+    <nav id="tabs">
+      <button data-tab="sessions"></button>
+      <button data-tab="agents"></button>
+      <button data-tab="settings"></button>
+      <button data-tab="reminders"></button>
+    </nav>
+    <button id="langBtn" class="ghost"></button>
+  </header>
+
+  <main>
+    <section id="tab-sessions" class="tab active">
+      <div class="card">
+        <h2 id="sessionsTitle"></h2>
+        <table>
+          <thead><tr id="sessionsHead"></tr></thead>
+          <tbody id="sessionsBody"></tbody>
+        </table>
+        <p class="empty" id="noSessions"></p>
+      </div>
+      <div class="card">
+        <h2 id="logTitle"></h2>
+        <ul id="eventLog" class="log"></ul>
+      </div>
+    </section>
+
+    <section id="tab-agents" class="tab">
+      <p class="hint" id="agentsHint"></p>
+      <div id="agentCards"></div>
+    </section>
+
+    <section id="tab-settings" class="tab">
+      <div class="card">
+        <div class="row"><span id="lblLanguage"></span><div id="langPicker" class="seg"></div></div>
+        <div class="row"><span id="lblStyle"></span><div id="stylePicker" class="seg"></div></div>
+        <div class="row"><span id="lblSize"></span><div id="sizePicker" class="seg"></div></div>
+        <div class="row"><span id="lblTop"></span><label class="switch"><input type="checkbox" id="optTop"><span></span></label></div>
+        <div class="row"><span id="lblSleep"></span><label class="switch"><input type="checkbox" id="optSleep"><span></span></label></div>
+        <div class="row"><span id="lblVisible"></span><label class="switch"><input type="checkbox" id="optVisible"><span></span></label></div>
+      </div>
+    </section>
+
+    <section id="tab-reminders" class="tab">
+      <div class="card">
+        <h2 id="remTitle"></h2>
+        <div class="row"><input id="remText" type="text" /></div>
+        <div class="row wrap" id="quickMins"></div>
+        <div class="row"><button id="remAdd" class="primary"></button></div>
+        <ul id="remList" class="log"></ul>
+      </div>
+    </section>
+  </main>
+  <script src="dashboard.js"></script>
+</body>
+</html>
