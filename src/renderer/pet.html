@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'" />
+  <title>Trump on Desk</title>
+  <link rel="stylesheet" href="pet.css" />
+</head>
+<body>
+  <div id="stage">
+    <svg id="pet" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- body -->
+      <g id="body">
+        <g id="suit">
+          <rect x="55" y="146" width="90" height="72" rx="14" fill="#2B3A67"/>
+          <path d="M 84 146 L 116 146 L 100 184 Z" fill="#F5EFE0"/>
+          <path d="M 94 148 L 106 148 L 100 160 Z" fill="#C0272D"/>
+          <path d="M 95 160 L 105 160 L 103 190 L 97 190 Z" fill="#C0272D"/>
+        </g>
+        <g id="armL">
+          <rect x="36" y="150" width="20" height="48" rx="9" fill="#2B3A67"/>
+          <circle cx="46" cy="198" r="8" fill="#F2A65A"/>
+        </g>
+        <g id="armR">
+          <rect x="144" y="150" width="20" height="48" rx="9" fill="#2B3A67"/>
+          <circle cx="154" cy="198" r="8" fill="#F2A65A"/>
+        </g>
+      </g>
+
+      <!-- head -->
+      <g id="head">
+        <ellipse cx="44" cy="90" rx="8" ry="11" fill="#F2A65A"/>
+        <ellipse cx="156" cy="90" rx="8" ry="11" fill="#F2A65A"/>
+        <ellipse cx="100" cy="90" rx="57" ry="53" fill="#F2A65A"/>
+
+        <!-- cheeks -->
+        <ellipse cx="66" cy="104" rx="8" ry="5" fill="#F08A5C" opacity="0.55"/>
+        <ellipse cx="134" cy="104" rx="8" ry="5" fill="#F08A5C" opacity="0.55"/>
+
+        <!-- golden comb-over swoosh -->
+        <path d="M 45 82
+                 C 43 42 68 22 100 22
+                 C 132 22 157 42 155 82
+                 C 151 72 140 67 127 67
+                 C 108 67 93 74 74 71
+                 C 62 69 52 73 45 82 Z" fill="#F4C95D"/>
+        <path d="M 150 74 Q 158 60 150 50" stroke="#F4C95D" stroke-width="7" stroke-linecap="round" fill="none"/>
+
+        <!-- brows -->
+        <rect class="browL" x="67" y="60" width="24" height="5.5" rx="2.75" fill="#2B2B33" transform="rotate(-5 79 62)"/>
+        <rect class="browR" x="109" y="60" width="24" height="5.5" rx="2.75" fill="#2B2B33" transform="rotate(5 121 62)"/>
+
+        <!-- eyes -->
+        <g id="eyes">
+          <ellipse cx="80" cy="82" rx="7.5" ry="8.5" fill="#FFFFFF"/>
+          <ellipse cx="120" cy="82" rx="7.5" ry="8.5" fill="#FFFFFF"/>
+          <circle id="pupilL" cx="80" cy="83" r="3.8" fill="#1E1E2A"/>
+          <circle id="pupilR" cx="120" cy="83" r="3.8" fill="#1E1E2A"/>
+          <circle cx="78.5" cy="81" r="1.3" fill="#FFFFFF"/>
+          <circle cx="118.5" cy="81" r="1.3" fill="#FFFFFF"/>
+        </g>
+        <g id="eyesClosed" class="hidden">
+          <path d="M 73 83 Q 80 88 87 83" stroke="#1E1E2A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M 113 83 Q 120 88 127 83" stroke="#1E1E2A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- nose -->
+        <ellipse cx="100" cy="99" rx="6" ry="5" fill="#E8924A"/>
+
+        <!-- mouths -->
+        <path id="mouthSmile" class="mouth" d="M 88 114 Q 100 121 112 114" stroke="#8A3A2E" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse id="mouthOpen" class="mouth hidden" cx="100" cy="116" rx="7" ry="6" fill="#5A2A22"/>
+        <path id="mouthFrown" class="mouth hidden" d="M 88 119 Q 100 112 112 119" stroke="#8A3A2E" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path id="mouthGrin" class="mouth hidden" d="M 86 112 Q 100 124 114 112 Z" fill="#5A2A22" stroke="#8A3A2E" stroke-width="2"/>
+      </g>
+
+      <!-- headphones for subagent -->
+      <g id="headphones" class="hidden">
+        <path d="M 50 70 Q 100 10 150 70" stroke="#1f2430" stroke-width="6" fill="none"/>
+        <rect x="42" y="72" width="14" height="26" rx="6" fill="#1f2430"/>
+        <rect x="144" y="72" width="14" height="26" rx="6" fill="#1f2430"/>
+      </g>
+
+      <!-- speech bubble -->
+      <g id="bubble" class="hidden">
+        <ellipse cx="140" cy="36" rx="36" ry="20" fill="#FFFFFF" stroke="#2B3A67" stroke-width="2.5"/>
+        <circle cx="112" cy="52" r="3.5" fill="#FFFFFF" stroke="#2B3A67" stroke-width="2.5"/>
+        <circle cx="104" cy="60" r="2.2" fill="#FFFFFF" stroke="#2B3A67" stroke-width="2.5"/>
+        <text id="bubbleText" x="140" y="41" text-anchor="middle" font-size="12" font-family="Segoe UI, sans-serif" font-weight="600" fill="#2B3A67">…</text>
+      </g>
+
+      <!-- sleep zzz -->
+      <g id="zzz" class="hidden">
+        <text x="150" y="42" font-size="16" font-family="Segoe UI, sans-serif" font-weight="700" fill="#5b6b9a">Z</text>
+        <text x="163" y="28" font-size="11" font-family="Segoe UI, sans-serif" fill="#8896c4">z</text>
+      </g>
+    </svg>
+
+    <!-- ============ PIXEL MODE ============ -->
+    <svg id="petPixel" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+      <g id="bodyP">
+        <rect x="60" y="150" width="80" height="60" fill="#2B3A67"/>
+        <rect x="88" y="150" width="24" height="18" fill="#F5EFE0"/>
+        <rect x="95" y="150" width="10" height="8" fill="#C0272D"/>
+        <rect x="96" y="158" width="8" height="26" fill="#C0272D"/>
+        <g id="armLp">
+          <rect x="44" y="152" width="14" height="44" fill="#2B3A67"/>
+          <rect x="46" y="194" width="10" height="10" fill="#F2A65A"/>
+        </g>
+        <g id="armRp">
+          <rect x="142" y="152" width="14" height="44" fill="#2B3A67"/>
+          <rect x="144" y="194" width="10" height="10" fill="#F2A65A"/>
+        </g>
+      </g>
+      <g id="headP">
+        <rect x="44" y="82" width="10" height="16" fill="#F2A65A"/>
+        <rect x="146" y="82" width="10" height="16" fill="#F2A65A"/>
+        <rect x="54" y="48" width="92" height="70" fill="#F2A65A"/>
+        <!-- golden comb-over -->
+        <rect x="54" y="48" width="92" height="14" fill="#F4C95D"/>
+        <rect x="60" y="62" width="56" height="8" fill="#F4C95D"/>
+        <rect x="138" y="56" width="14" height="10" fill="#F4C95D"/>
+        <!-- brows -->
+        <rect x="66" y="74" width="18" height="4" fill="#2B2B33"/>
+        <rect x="116" y="74" width="18" height="4" fill="#2B2B33"/>
+        <g id="eyesP">
+          <rect x="72" y="84" width="10" height="12" fill="#FFFFFF"/>
+          <rect x="118" y="84" width="10" height="12" fill="#FFFFFF"/>
+          <rect x="75" y="87" width="5" height="7" fill="#1E1E2A"/>
+          <rect x="121" y="87" width="5" height="7" fill="#1E1E2A"/>
+        </g>
+        <g id="eyesClosedP" class="hidden">
+          <rect x="72" y="90" width="12" height="3" fill="#1E1E2A"/>
+          <rect x="116" y="90" width="12" height="3" fill="#1E1E2A"/>
+        </g>
+        <rect x="94" y="100" width="12" height="8" fill="#E8924A"/>
+        <rect id="mouthSmileP" class="mouthP" x="86" y="116" width="28" height="3" fill="#8A3A2E"/>
+        <rect id="mouthOpenP" class="mouthP hidden" x="92" y="114" width="16" height="10" fill="#5A2A22"/>
+        <rect id="mouthFrownP" class="mouthP hidden" x="86" y="118" width="28" height="3" fill="#8A3A2E"/>
+        <rect id="mouthGrinP" class="mouthP hidden" x="86" y="114" width="28" height="8" fill="#5A2A22"/>
+      </g>
+      <g id="headphonesP" class="hidden">
+        <rect x="46" y="60" width="8" height="24" fill="#1f2430"/>
+        <rect x="146" y="60" width="8" height="24" fill="#1f2430"/>
+        <rect x="50" y="56" width="100" height="6" fill="#1f2430"/>
+      </g>
+      <g id="bubbleP" class="hidden">
+        <rect x="104" y="12" width="76" height="34" fill="#FFFFFF" stroke="#2B3A67" stroke-width="2"/>
+        <text id="bubbleTextP" x="142" y="34" text-anchor="middle" font-size="13" font-family="monospace" font-weight="700" fill="#2B3A67">…</text>
+      </g>
+      <g id="zzzP" class="hidden">
+        <text x="148" y="40" font-size="16" font-family="monospace" font-weight="700" fill="#5b6b9a">Z</text>
+        <text x="162" y="26" font-size="11" font-family="monospace" fill="#8896c4">z</text>
+      </g>
+    </svg>
+  </div>
+  <script src="pet.js"></script>
+</body>
+</html>
