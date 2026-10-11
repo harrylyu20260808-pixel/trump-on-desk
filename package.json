@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "test": "node test/run-tests.js",
-    "pack:win": "electron-builder --win nsis x64"
+    "pack:win": "electron-builder --win nsis --x64"
   },
   "author": "trump-on-desk contributors",
   "license": "AGPL-3.0-or-later",
@@ -26,7 +26,8 @@
     "directories": { "output": "release" },
     "win": {
       "target": [{ "target": "nsis", "arch": ["x64"] }],
-      "icon": "assets/icon.png"
+      "icon": "assets/icon.png",
+      "signAndEditExecutable": false
     },
     "nsis": {
       "oneClick": false,
