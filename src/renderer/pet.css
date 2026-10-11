@@ -1,0 +1,147 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 100%; height: 100%;
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+#stage { width: 100vw; height: 100vh; display: grid; place-items: center; }
+#pet { width: 100%; height: 100%; overflow: visible; }
+.hidden { display: none; }
+
+:root { --pupil-x: 0px; --pupil-y: 0px; }
+#pupilL, #pupilR { transform: translate(var(--pupil-x), var(--pupil-y)); }
+#head { transform-box: fill-box; transform-origin: 50% 90%; }
+#body { transform-box: fill-box; transform-origin: 50% 100%; }
+#armL, #armR { transform-box: fill-box; transform-origin: 50% 8%; }
+
+/* default: show smile, eyes open */
+#mouthSmile { display: inline; }
+#eyes { display: inline; }
+
+/* ---------- idle: gentle breathing ---------- */
+.state-idle #body { animation: breathe 2.8s ease-in-out infinite; }
+.state-idle #head { animation: breathe 2.8s ease-in-out infinite; }
+@keyframes breathe {
+  0%, 100% { transform: scaleY(1) translateY(0); }
+  50% { transform: scaleY(1.015) translateY(-1px); }
+}
+
+/* ---------- thinking: tilt + open mouth + bubble ---------- */
+.state-thinking #head { transform: rotate(-4deg); }
+.state-thinking #mouthSmile, .state-thinking #mouthFrown, .state-thinking #mouthGrin { display: none; }
+.state-thinking #mouthOpen { display: inline; }
+.state-thinking #bubble { display: inline; animation: pop .25s ease-out; }
+
+/* ---------- working: arms hammer ---------- */
+.state-working #armL { animation: typeL .18s ease-in-out infinite; }
+.state-working #armR { animation: typeR .18s ease-in-out infinite; }
+.state-working #body { animation: bobFast .18s ease-in-out infinite; }
+@keyframes typeL { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes typeR { 0%,100% { transform: translateY(-5px); } 50% { transform: translateY(0); } }
+@keyframes bobFast { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
+
+/* ---------- subagent: headphones + sway ---------- */
+.state-subagent #headphones { display: inline; }
+.state-subagent #head { animation: groove 1.1s ease-in-out infinite; }
+.state-subagent #body { animation: groove 1.1s ease-in-out infinite; }
+@keyframes groove { 0%,100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+
+/* ---------- celebrate: pump fist + grin ---------- */
+.state-celebrate #armR { animation: pump .5s ease-in-out infinite; }
+.state-celebrate #mouthSmile, .state-celebrate #mouthFrown, .state-celebrate #mouthOpen { display: none; }
+.state-celebrate #mouthGrin { display: inline; }
+.state-celebrate #bubble { display: inline; animation: pop .25s ease-out; }
+@keyframes pump { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(-75deg); } }
+
+/* ---------- error: frown, crossed arms ---------- */
+.state-error #armL { transform: rotate(30deg); }
+.state-error #armR { transform: rotate(-30deg); }
+.state-error #mouthSmile, .state-error #mouthGrin, .state-error #mouthOpen { display: none; }
+.state-error #mouthFrown { display: inline; }
+.state-error #head { transform: rotate(2deg); }
+
+/* ---------- notification: wave ---------- */
+.state-notification #armR { animation: wave .4s ease-in-out infinite; }
+.state-notification #bubble { display: inline; animation: pop .25s ease-out; }
+@keyframes wave { 0%,100% { transform: rotate(-20deg); } 50% { transform: rotate(-65deg); } }
+
+/* ---------- sleep: closed eyes, sink, zzz ---------- */
+.state-sleep #eyes { display: none; }
+.state-sleep #eyesClosed { display: inline; }
+.state-sleep #mouthSmile, .state-sleep #mouthFrown, .state-sleep #mouthGrin, .state-sleep #mouthOpen { display: none; }
+.state-sleep #head { transform: translateY(8px) rotate(7deg); }
+.state-sleep #body { animation: sleepBreath 3.4s ease-in-out infinite; }
+.state-sleep #zzz { display: inline; animation: floatZ 3s ease-in-out infinite; }
+@keyframes sleepBreath { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.02); } }
+@keyframes floatZ { 0% { opacity: 0; transform: translateY(6px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-10px); } }
+
+/* ---------- interactions ---------- */
+.state-cola #armR { animation: sip .8s ease-in-out infinite; }
+.state-cola #bubble { display: inline; }
+@keyframes sip { 0%,100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-12px) rotate(-35deg); } }
+
+.state-thumbs #armR { transform: rotate(-85deg); }
+.state-thumbs #bubble { display: inline; }
+
+.state-rally #armL { animation: pump .35s ease-in-out infinite; }
+.state-rally #armR { animation: pumpR .35s ease-in-out infinite; }
+@keyframes pumpR { 0%,100% { transform: rotate(-75deg); } 50% { transform: rotate(-20deg); } }
+
+@keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ==================== PIXEL MODE ==================== */
+#petPixel { display: none; }
+body.pixel #pet { display: none; }
+body.pixel #petPixel { display: block; }
+
+#headP, #bodyP { transform-box: fill-box; }
+#headP { transform-origin: 50% 90%; }
+#bodyP { transform-origin: 50% 100%; }
+#armLp, #armRp { transform-box: fill-box; transform-origin: 50% 8%; }
+
+/* pixel idle breathing */
+body.pixel.state-idle #bodyP, body.pixel.state-idle #headP { animation: breatheP 2.8s ease-in-out infinite; }
+@keyframes breatheP { 0%,100% { transform: scaleY(1) translateY(0); } 50% { transform: scaleY(1.02) translateY(-1px); } }
+
+body.pixel.state-thinking #headP { transform: rotate(-4deg); }
+body.pixel.state-thinking #bubbleP { display: inline; }
+body.pixel.state-thinking #mouthOpenP { display: inline; }
+body.pixel.state-thinking .mouthP:not(#mouthOpenP) { display: none; }
+
+body.pixel.state-working #armLp { animation: typeL .18s ease-in-out infinite; }
+body.pixel.state-working #armRp { animation: typeR .18s ease-in-out infinite; }
+body.pixel.state-working #bodyP { animation: bobFast .18s ease-in-out infinite; }
+
+body.pixel.state-subagent #headphonesP { display: inline; }
+body.pixel.state-subagent #headP, body.pixel.state-subagent #bodyP { animation: groove 1.1s ease-in-out infinite; }
+
+body.pixel.state-celebrate #armRp { animation: pump .5s ease-in-out infinite; }
+body.pixel.state-celebrate #mouthGrinP { display: inline; }
+body.pixel.state-celebrate .mouthP:not(#mouthGrinP) { display: none; }
+body.pixel.state-celebrate #bubbleP { display: inline; }
+
+body.pixel.state-error #armLp { transform: rotate(30deg); }
+body.pixel.state-error #armRp { transform: rotate(-30deg); }
+body.pixel.state-error #mouthFrownP { display: inline; }
+body.pixel.state-error .mouthP:not(#mouthFrownP) { display: none; }
+body.pixel.state-error #headP { transform: rotate(2deg); }
+
+body.pixel.state-notification #armRp { animation: wave .4s ease-in-out infinite; }
+body.pixel.state-notification #bubbleP { display: inline; }
+
+body.pixel.state-sleep #eyesP { display: none; }
+body.pixel.state-sleep #eyesClosedP { display: inline; }
+body.pixel.state-sleep .mouthP { display: none; }
+body.pixel.state-sleep #headP { transform: translateY(8px) rotate(7deg); }
+body.pixel.state-sleep #bodyP { animation: sleepBreath 3.4s ease-in-out infinite; }
+body.pixel.state-sleep #zzzP { display: inline; animation: floatZ 3s ease-in-out infinite; }
+
+body.pixel.state-cola #armRp { animation: sip .8s ease-in-out infinite; }
+body.pixel.state-cola #bubbleP { display: inline; }
+body.pixel.state-thumbs #armRp { transform: rotate(-85deg); }
+body.pixel.state-thumbs #bubbleP { display: inline; }
+body.pixel.state-rally #armLp { animation: pump .35s ease-in-out infinite; }
+body.pixel.state-rally #armRp { animation: pumpR .35s ease-in-out infinite; }
